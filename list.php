@@ -3,6 +3,15 @@
 -->
 <?php
 require_once("head.php");
+require_once("database-connection.php");
+$query = $databaseConnection->query("SELECT nomPokemon, urlPhoto, T.libelleType AS 'Type 1',T2.LibelleType AS 'Type 2'
+    FROM Pokemon P
+    JOIN TypePokemon T ON P.idTypePokemon=T.idType
+    LEFT JOIN TypePokemon T2 ON P.idSecondTypePokemon=T2.idtype
+    ORDER BY idPokemon ASC
+");
+$result=$query->fetch_all(MYSQLI_ASSOC);
+
 ?>
 <table>
     <thead>
@@ -15,22 +24,15 @@ require_once("head.php");
         <th>Type 1</th>
         <th>Type 2</th>
     </thead>
-</table>
+<tbody>
 <?php
-require_once("database-connection.php")
-$query = $databaseConnection->query("SELECT nomPokemon, urlPhoto, T.libelleType AS 'Type 1',T2.LibelleType AS 'Type 2'
-    FROM Pokemon P
-    JOIN TypePokemon T ON P.idTypePokemon=T.idType
-    LEFT JOIN TypePokemon T2 ON P.idSecondTypePokemon=T2.idtype
-    ORDER BY idPokemon ASC
-");
-$result=$query->fetch_all(MYSQLI_ASSOC);
-var_dump($result);
-print_r();
+foreach($result as $pokemon) { 
+    $row = "<tr><td>".$pokemon['nomPokemon']." </td><td>".$pokemon['urlPhoto']."</td><td>".$pokemon['Type 1']."</td><td>".$pokemon['Type 2']."</td></tr>";
+    echo $row;
+}
 ?>
-
-
-
+</tbody>
+</table>
 <?php
 require_once("footer.php");
 ?>
