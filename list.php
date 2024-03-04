@@ -3,13 +3,16 @@
 -->
 <?php
 require_once("head.php");
+require_once("database-connection.php")
+$query = $databaseConnection->query("SELECT nomPokemon, urlPhoto, T.libelleType AS 'Type 1',T2.LibelleType AS 'Type 2'
+    FROM Pokemon P
+    JOIN TypePokemon T ON P.idTypePokemon=T.idType
+    LEFT JOIN TypePokemon T2 ON P;idSecondTypePokemon=T2.idtype
+");
+$result=$query->fetch_all(MYSQLI_ASSOC);
+var_dump($result)
 ?>
-<pre>
-    &lt;
-    A REMPLACER PAR VOTRE CODE POUR CHARGER ET AFFICHER DANS UN TABLEAU LA LISTE DES POKEMONS PAR LEUR NOM.
-    CHAQUE POKEMON DOIT ETRE CLIQUABLE POUR NAVIGUER SUR UNE PAGE OU L'ON AFFICHE SON IMAGE ET L'ENSEMBLE DE SES CARACTERISTIQUES 
-    &gt;
-    </pre>
+
 
 
 <?php
