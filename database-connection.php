@@ -13,5 +13,5 @@ $databaseConnection = mysqli_connect(
     "root",
     null,
     "pokemon_tp2",
-    3306
+    3306,
 );

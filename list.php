@@ -27,12 +27,13 @@ $result=$query->fetch_all(MYSQLI_ASSOC);
 <tbody>
 <?php
 foreach($result as $pokemon) { 
-    $row = "<tr><td>".$pokemon['nomPokemon']." </td><td>".$pokemon['urlPhoto']."</td><td>".$pokemon['Type 1']."</td><td>".$pokemon['Type 2']."</td></tr>";
-    echo $row;
+    $row = "<tr><td>";
+    echo $row.$pokemon['nomPokemon']."</td><td><img src=".$pokemon['urlPhoto']."></td><td>".$pokemon['Type 1']."</td><td>".$pokemon['Type 2']."</td></tr>";
 }
-?>
 </tbody>
+?>
 </table>
 <?php
 require_once("footer.php");
 ?>
+<img src="">
