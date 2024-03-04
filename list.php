@@ -15,25 +15,23 @@ $result=$query->fetch_all(MYSQLI_ASSOC);
 ?>
 <table>
     <thead>
-        <th>
-            nom Pokemon
-        </th>
-        <th>
-            Image
-        </th>
+        <th>nom Pokemon</th>
+        <th>Image</th>
         <th>Type 1</th>
         <th>Type 2</th>
     </thead>
 <tbody>
 <?php
-foreach($result as $pokemon) { 
-    $row = "<tr><td>";
-    echo $row.$pokemon['nomPokemon']."</td><td><img src=".$pokemon['urlPhoto']."></td><td>".$pokemon['Type 1']."</td><td>".$pokemon['Type 2']."</td></tr>";
-}
-</tbody>
+    foreach($result as $pokemon) { 
+        $row = "<tr><td>";
+        echo $row.$pokemon['nomPokemon']."</td>
+        <td><img src=".$pokemon['urlPhoto']."></td>
+        <td>".$pokemon['Type 1']."</td>
+        <td>".$pokemon['Type 2']."</td></tr>";
+    }
 ?>
+</tbody>
 </table>
 <?php
 require_once("footer.php");
 ?>
-<img src="">
