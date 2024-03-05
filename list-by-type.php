@@ -14,15 +14,18 @@ $query = $databaseConnection->query("SELECT *
 $result=$query->fetch_all(MYSQLI_ASSOC);
 
 ?>
-
 <table>
     <thead>
         <th> Type pokemon </th>
-        <th> numero </th>
         <th> nom Pokemon </th>
         <th> Image </th>
     </thead>
 <tbody>
+<?php
+foreach(){
+
+}
+?>
 <?php
     foreach($result as $pokemon) { 
         $row = "<tr><td>";
@@ -36,7 +39,7 @@ $result=$query->fetch_all(MYSQLI_ASSOC);
 </table>
 
 
-?>
+
 
 <?php
 require_once("footer.php");
