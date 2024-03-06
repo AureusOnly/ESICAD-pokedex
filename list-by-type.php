@@ -1,46 +1,48 @@
-<!-- 
-    Ce fichier représente la page de liste par type de pokémon du site.
--->
 <?php
 require_once("head.php");
 require_once("database-connection.php");
-$query = $databaseConnection->query("SELECT *
-    FROM Pokemon P
-    JOIN TypePokemon T ON  P.idTypePokemon=T.idType
-    ORDER BY idPokemon ASC
-    GROUP BY TypePokemon ASC
-");
 
-$result=$query->fetch_all(MYSQLI_ASSOC);
+// Prepare and execute the SQL query
+$query = $databaseConnection->prepare("SELECT P.*, T.libelleType AS typepokemon
+    FROM pokemon P
+    JOIN typepokemon T ON P.IdTypePokemon = T.IdType
+    ORDER BY T.IdType ASC, P.IdPokemon ASC");
+$query->execute();
+$result = $query->fetchAll(PDO::FETCH_ASSOC);
 
+// Get unique types
+$types = array_unique(array_column($result, 'typepokemon'));
 ?>
-<table>
-    <thead>
-        <th> Type pokemon </th>
-        <th> nom Pokemon </th>
-        <th> Image </th>
-    </thead>
-<tbody>
-<?php
-foreach(){
-
-}
-?>
-<?php
-    foreach($result as $pokemon) { 
+<?php  
+foreach ($types as $type)  { 
         $row = "<tr><td>";
-        echo $row.$pokemon['Type']."</td>
-        <td>".$pokemon['']."</td>
+        echo $row.$pokemon['nomPokemon']."</td>
         <td><img src=".$pokemon['urlPhoto']."></td>
-        <td>".$pokemon['']."</td></tr>";
+        <td>".$pokemon['Type 1']."</td>
+        <td>".$pokemon['Type 2']."</td></tr>";
     }
 ?>
-</tbody>
-</table>
-
-
-
-
-<?php
+    <h2><?php echo $type; ?></h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Nom Pokémon</th>
+                <th>Image</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($result as $pokemon) {
+                if ($pokemon['typepokemon'] === $type)
+                $row = "<tr><td>";
+                echo $row.$type['TypePokemon']."<tr>
+                        <td>".$pokemon['nomPokemon']." </td>
+                        <td><img src=".$pokemon['urlPhoto']."></td>
+                    </tr>"
+                
+            }
+             ?>
+        </tbody>
+    </table>
+    <?php
 require_once("footer.php");
 ?>
