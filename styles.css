@@ -132,31 +132,29 @@ footer {
 }
 
 table {
-  width: 80%;
+  width: 100%;
   border-collapse: collapse;
-  margin: 0 auto;
+  margin-bottom: 20px;
 }
 
-th, td {
-  padding: 10px;
-  border: 2px solid #ff6384; /* Un rouge plus doux */
-  text-align: left;
+table tr:hover{
+  background: rgb(183, 0, 0);
+}
+
+table td:hover{
+  background:rgb(246, 49, 49);
+}
+
+table {
+  border-color: aliceblue;
 }
 
 th {
-  background-color: #ff6384; /* Rouge */
-  color: white;
+  background-color: aliceblue;
 }
 
-tr:nth-child(even) {
-  background-color: #ffd3e2; /* Un rose pâle plus clair pour l'alternance */
-}
-
-tr:hover {
-  background-color: #ffbec5; /* Un rose/rouge très clair pour l'effet hover */
-}
-
-img{
-  width:60px;
-  height:60px;
+img {
+  max-width: 100px;
+  width: 90px;
+  height: 90px;
 }

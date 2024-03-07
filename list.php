@@ -1,35 +1,31 @@
-
-<?php
-require_once("head.php");
-require_once("database-connection.php");
-$query = $databaseConnection->query("SELECT nomPokemon, urlPhoto, T.libelleType AS 'Type 1',T2.LibelleType AS 'Type 2'
-    FROM Pokemon P
-    JOIN TypePokemon T ON P.idTypePokemon = T.idype
-    LEFT JOIN TypePokemon T2 ON P.idSecondTypePokemon = T2.idtype
-    ORDER BY idPokemon ASC
-");
-$result=$query->fetch_all(MYSQLI_ASSOC);
-
-?>
-<table>
-    <thead>
-        <th>nom Pokemon</th>
-        <th>Image</th>
-        <th>Type 1</th>
-        <th>Type 2</th>
-    </thead>
-<tbody>
-<?php
-    foreach($result as $pokemon) { 
-        $row = "<tr><td>";
-        echo $row.$pokemon['nomPokemon']."</td>
-        <td><img src=".$pokemon['urlPhoto']."></td>
-        <td>".$pokemon['Type 1']."</td>
-        <td>".$pokemon['Type 2']."</td></tr>";
-    }
-?>
-</tbody>
-</table>
-<?php
-require_once("footer.php");
-?>
+<?php require_once("head.php"); 
+require_once('database-connection.php'); 
+$query = $databaseConnection->query("SELECT NomPokemon, urlPhoto, T.libelleType AS 'Type 1', T2.libelleType AS 'Type 2'
+FROM pokemon P 
+JOIN typepokemon T ON P.IdTypePokemon = T.IdType 
+LEFT JOIN typepokemon T2 ON P.IdSecondTypePokemon = T2.IdType 
+ORDER BY IdPokemon"); 
+?>   
+<?php if (!$query) { throw new RuntimeException("Cannot execute query. Cause: " . mysqli_error($databaseConnection)); } 
+    else { 
+        $result = $query->fetch_all(MYSQLI_ASSOC); 
+        echo "<table border='2' cellpadding='10' cellspacing='0' style='border-collapse: collapse;'>"; 
+        echo "
+        <thead>
+            <tr>
+                <th>Pokemon</th>
+                <th>Image</th>
+                <th>Type 1</th>
+                <th>Type 2</th>
+        </tr>
+        </thead>";
+    foreach ($result as $pokemon) { 
+    echo "<tr>
+    <td>" . $pokemon["NomPokemon"] . "</td>
+    <td><img src='" . $pokemon['urlPhoto']. "' alt='" . $pokemon["NomPokemon"] . "' width='50' height='50'></td>
+    <td>" . $pokemon["Type 1"] . "</td>
+    <td>" . $pokemon["Type 2"] . "</td>
+    </tr>"; } 
+    echo "</table>"; } 
+    require_once("footer.php");
+     ?>
