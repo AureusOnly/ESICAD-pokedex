@@ -4,7 +4,7 @@ require_once("head.php");
 require_once("database-connection.php");
 $query = $databaseConnection->query("SELECT nomPokemon, urlPhoto, T.libelleType AS 'Type 1',T2.LibelleType AS 'Type 2'
     FROM Pokemon P
-    JOIN TypePokemon T ON P.idTypePokemon = T.idtype
+    JOIN TypePokemon T ON P.idTypePokemon = T.idype
     LEFT JOIN TypePokemon T2 ON P.idSecondTypePokemon = T2.idtype
     ORDER BY idPokemon ASC
 ");
