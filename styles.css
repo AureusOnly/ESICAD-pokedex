@@ -21,6 +21,8 @@ body {
   outline: none;
 }
 
+
+
 header {
   background: rgb(255, 255, 255);
   background: radial-gradient(
@@ -33,6 +35,10 @@ header {
 }
 header > a {
   text-decoration: none;
+}
+
+a{
+text-decoration: none;
 }
 
 header > a > h1 {

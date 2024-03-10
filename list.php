@@ -1,6 +1,6 @@
 <?php require_once("head.php"); 
 require_once('database-connection.php'); 
-$query = $databaseConnection->query("SELECT NomPokemon, urlPhoto, T.libelleType AS 'Type 1', T2.libelleType AS 'Type 2'
+$query = $databaseConnection->query("SELECT IdPokemon, NomPokemon, urlPhoto, T.libelleType AS 'Type 1', T2.libelleType AS 'Type 2'
 FROM pokemon P 
 JOIN typepokemon T ON P.IdTypePokemon = T.IdType 
 LEFT JOIN typepokemon T2 ON P.IdSecondTypePokemon = T2.IdType 
@@ -21,7 +21,7 @@ ORDER BY IdPokemon");
         </thead>";
     foreach ($result as $pokemon) { 
     echo "<tr>
-    <td>" . $pokemon["NomPokemon"] . "</td>
+    <td><a href ='details.pokemon.php?id=".$pokemon['IdPokemon']." '>" . $pokemon["NomPokemon"] . "</a></td>
     <td><img src='" . $pokemon['urlPhoto']. "' alt='" . $pokemon["NomPokemon"] . "' width='50' height='50'></td>
     <td>" . $pokemon["Type 1"] . "</td>
     <td>" . $pokemon["Type 2"] . "</td>

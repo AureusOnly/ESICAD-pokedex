@@ -1,11 +1,8 @@
-<!-- 
-    Ce fichier représente la page de résultats de recherche de pokémons du site.
--->
 <?php
 require_once("head.php");
-?>
-<pre>
+require_once("database-connection.php");
 
-<?php
-require_once("footer.php");
+$nomPokemon = $_POST["q"];
+
+echo "Ta recherche : " . $nomPokemon;
 ?>
